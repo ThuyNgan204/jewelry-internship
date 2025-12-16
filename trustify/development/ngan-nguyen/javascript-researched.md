@@ -219,18 +219,277 @@ Arrays are a special kind of objects, with numbered indexes.
                 }
 
 - Declaration function
+    + Syntax:
+        function add(a, b) {
+            return a + b;
+        }
+    + Key characteristics: 
+        `Hoisting`: function declarations are fully hoisted
+
+            add(2, 3); //works
+
+            function add(a, b) {
+                return a + b;
+            }
+
+            The entire fuction is moved to the top of its scope during compilation.
+
+        `this` behavior
+            this depends on how to the function is called
+            NOT where it's defined
+
+            const obj = {
+                x: 10,
+                show() {
+                    console.log(this.x);
+                }
+            };
+
+            obj.show(); //10
+
+        `can be used as constructor`
+
+            function User(name) {
+                this.name = name;
+            }
+
+            const u = new User("Alice");
+    
+    + When to use:  Core business logic
+                    Utility functions
+                    When hoisting is useful
+                    When you need `this` or `arguments`
+
 - Expression function
+    + Syntax: 
+        const add = function (a, b) {
+            return a + b;
+        };
+    + Key characteristics:
+        `Hoisting`: NOT fully hoisted
+
+            add(2, 3); //ReferenceError
+
+            const add = function (a, b) {
+                return a + b;
+            };
+
+            Only the variable (add) is hoisted, not the function body.
+
+        `Can be anonymous or named`: Named expressions help with debugging & recursion
+
+            const factorial = function fact(n) {
+                if (n <= 1) return 1;
+                return n * fact(n - 1);
+            };
+        
+        `this` behavior: same as function declaration - depends on how it's called
+
+            button.addEventListener("click", function () {
+                console.log(this); //button element
+            });
+    + When to use:  Assigning fuctions to variables
+                    Callbacks
+                    Conditional function creation
+                    Encapsulation //dong goi
+
 - Arrow function
+    + Syntax:
+        const add = (a, b) => a + b;
+
+    + Key characteristics
+        `NO own this`: Arrow functions do not have their own `this`, they inherit this from the surrounding scrope
+
+            const obj = {
+                x: 10,
+                show: () => {
+                    console.log(this.x);
+                }
+            };
+
+            obj.show(); //underfined
+
+            //Correct usage
+            const obj = {
+                x: 10,
+                show() {
+                    setTimeout(() => {
+                        console.log(this.x); //10
+                    }, 1000);
+                }
+            };
+        
+        `NO arguments object`
+            const test = () => {
+                console.log(arguments); //ReferenceError
+            };
+
+            Use rest parameters instead: const tst = (...args) => args;
+        
+        `Cannot be used as constructor`
+            const User = () => {};
+            new User(); //TypeError
+        
+        `Short syntax`
+    + When to use:  Array methods (map, filter, reduce)
+                    Callbacks
+                    Functional programming
+                    When you want lexical `this`
 
 6. `Polyfill`
+    + A polyfill is code that adds missing modern JavaScript features to older environmnets (usually browsers)
+    + Example:
+        We have 
+            const contacts = ['Brooke', 'Becca', 'Nathan', 'Adam', 'Michael']
+            if (contacts.includes('Rachel')) {
+                console.log('You have a Rachel!')
+            }
+        This works but when apply for older browser, we receive an error: `Uncaught TypeError: contacts.includes is not a function` because the older browser not support this methods. Therefore, we code another method instead (is called polyfill js)
+            if (!Array.prototype.includes) {
+                Array.prototype.includes = function includes(searchElement) {
+                    return this.indexOf(searchElement) !== -1
+                }
+            }
+    + When polyfills are used:  Supporting older browsers (IE, old Android)
+                                Using modern syntax safely
+    + Notes:    Polyfills modify prototypes -> global impact
+                Use libraries like core-js, babel
+
 7. `Object constructor`
+    + To create an object type we use an object constructor function
+    + It is considered good practice to name constructor functions with an upper-case first letter
+
+        function Person(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+        }
+
+        //Use new Person() to create many new Person objects:
+        const myFather = new Person("John", "Doe", 50, "blue");
+        const myMother = new Person("Sally", "Rally", 48, "green");
+        const mySister = new Person("Anna", "Rally", 18, "green");
+        const mySelf = new Person("Johnny", "Rally", 22, "green");
+    + A value given to a property will be a default value for all objects created by the constructor:
+
+        function Person(first, last, age, eyecolor) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eyecolor;
+            this.nationality = "English"; //defaultValue
+        }
+    
+    + Adding a property to an object
+        myFather.nationality = "English";
+    + Adding a property to a constructor
+        Person.prototype.nationality = "English"; //you must add it to the constructor function prototype
+    + Constructor function methods
+        function Person(first, last, age, eyecolor) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eyecolor;
+            this.fullName = function() {
+                return this.firstName + " " + this.lastName;
+            };
+        }
+    + Adding a method to an object
+        myMother.changeName = function (name) {
+            this.lastName = name;
+        }
+    + Adding a method to a constructor
+        You cannot add a new method to an object constructor function
+        This code will produce a TypeError:
+            Person.changeName = function (name) {
+                this.lastName = name;
+            }
+
+            myMother.changeName("Doe"); // TypeError: myMother.changeName is not a function
+        Adding a new method must be done to the constructor function prototype:
+            Person.prototype.changeName = function (name) {
+                this.lastName = name;
+            }
+
+            myMother.changeName("Doe");
+    + Did you know?
+        Use object literals `{}` instead of `new Object()`
+        Use array literals `[]` instead of `new Array()`
+        Use pattern literals `/()/` instead of `new RegExp()`
+        Use function expressions `() {}` instead of `new Function()`
+
 8. `Object prototype`
-9. `If/else statement`
-10. `Switch/case statement`
-11. `Ternary operator`
+    + All JavaScript objects inherit properties and methods from a prototype:
+        `Date` object inherit from `Date.prototype`
+        `Array` objects inherit from `Array.prototype`
+        `Person` objects inherit from `Person.prototype`
+    + Using the `prototype` property to add new properties (or methods) to all existing objects
+        function Person(first, last, age, eyecolor) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eyecolor;
+        }
+
+        Person.prototype.nationality = "English";
+    The JavaScript `prototype` property also allows you to add new methods to objects constructors:
+        function Person(first, last, age, eyecolor) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eyecolor;
+        }
+
+        Person.prototype.name = function() {
+            return this.firstName + " " + this.lastName;
+        };
+
+9. `If/else statement`: Executes code baseed on conditions
+    if (score >= 50) {
+        pass();
+    } else {
+        fail();
+    }
+10. `Switch/case statement`: matches a value against multiple cases using strict equality (===)
+    switch (role) {
+        case "admin":
+            accessAll();
+            break;  //important
+        case "user":
+            accessLimited();
+            break;
+        default:
+            deny();
+    }
+11. `Ternary operator` ( ? : )
+    + The conditional operator is a shorthand for writing conditional `if...else` statements.
+    + It is called a ternary operator because it takes three operands.
+    + Syntax: (condition) ? expression1 : expression2
+    
+        const status = age >=18 ? "adult" : "minor";
+
 12. `Nullish coalescing operator (??)`
+    + Returns the right-hand value only if left is `null` or `undefined`
+        const name = user.name ?? "Guest";
+    + Best for: Default values
+                API data
+                Optional fields
 13. `Nullish coalescing assignment (??=)`
+    + Asigns value only if `variable` is `null` or `undefined`
+        user.name ??= "Guest";
+
+        //equivalent
+        if (user.name == null) {
+            user.name = "Guest";
+        }
+    + Best for: Initializing config values
+                Safe defaults
 14. `Optional chaining (?.)`
+    + Safely acccesses nested properties
+        user.profile?.address?.city;
+    + Best for: API responses
+                Deep object access
 15. `Spread syntax (...) / Destructuring`
 16. `Strict equality (===)`
 17. `Strict inequality (!==)`
