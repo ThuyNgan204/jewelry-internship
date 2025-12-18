@@ -491,20 +491,158 @@ Arrays are a special kind of objects, with numbered indexes.
     + Best for: API responses
                 Deep object access
 15. `Spread syntax (...) / Destructuring`
-16. `Strict equality (===)`
-17. `Strict inequality (!==)`
-18. `Bitwise AND, OR, XOR, NOT`
-19. `Logical AND, NOT, OR`
+    + The spread syntax (...) in Javascript is used to expand an iterable (like an array or string) into its individual elements or key-value pairs in places where multiple arguments or elements are expected. It was introduced in ES6 (ECMAScript 2015) to make code cleaner and more concise.
+    + Function arguments: It allows you to pass an array as a list of arguments to a function. 
+    const numbers = [1, 2, 3];
+
+    // Without spread: results in NaN because max() expects individual arguments
+    // console.log(Math.max(numbers));
+
+    // With spread: expands the array into Math.max(1, 2, 3)
+    console.log(Math.max(...numbers)); // Output: 3
+    + Array literals: It is used to create new arrays by combining existing arrays or inserting elements, making a shallow copy of the original array.
+        const fruits = ['apple', 'lemon'];
+        const moreFruits = ['banana', ...fruits, 'watermelon'];
+
+        console.log(moreFruits); 
+        // Output: ["banana", "apple", "lemon", "watermelon"]
+
+        // Copying an array
+        const fruitsCopy = [...fruits];
+        fruitsCopy.push('strawberry'); // Modifying the copy does not affect the original
+        console.log(fruits); // Output: ["apple", "lemon"]
+    + Object literals: It allows you to copy properties from one object into another, or merge multiple objects, creating a new object with key-value pairs from the original(s). Note that it performs a shallow copy. 
+        const objectOne = { hello: 'Anna', type: 'greeting' };
+        const objectTwo = { world: 'Peter', type: 'animal' };
+
+        // Merging objects (later properties overwrite earlier ones if keys overlap)
+        const combinedObject = { ...objectOne, ...objectTwo, newProp: 'Star' };
+
+        console.log(combinedObject);
+        // Output: { hello: "Anna", type: "animal", world: "Peter", newProp: "Star" }
+    + Destructuring
+        const { name, age } = user;
+        const [first, second] = arr;
+
+16. `Strict equality (===)`: equal value and equal type
+17. `Strict inequality (!==)`: not equal value or not equal type
+18. `Bitwise AND ( & ), OR ( | ), XOR ( ^ ), NOT ( ~ )`
+    + AND ( & ): It is a binary operator i.e accepts two operands. Bit-wise AND (&) returns 1 if both the bits are set (i.e 1) and 0 in any other case.
+        A       B       OUTPUT ( A & B )
+        0       0       0
+        0       1       0
+        1       0       0
+        1       1       1
+    + OR ( | ): It is a binary operator i.e. accepts two operands. Bit-wise OR ( | ) returns 1 if any of the operands is set (i.e. 1) and 0 in any other case.
+        A       B       OUTPUT ( A | B )
+        0       0       0
+        0       1       1
+        1       0       1
+        1       1       1
+    + XOR ( ^ ): It is a binary operator i.e. accepts two operands. Bit-wise XOR ( ^ ) returns 1 if both the operands are different and 0 in any other case.
+        A       B       OUTPUT ( A ^ B )
+        0       0       0
+        0       1       1
+        1       0       1
+        1       1       0
+    + NOT ( ~ ): It is a unary operator i.e. accepts single operands. Bit-wise NOT ( ~ ) flips the bits i.e 0 becomes 1 and 1 becomes 0.
+        A       OUTPUT ( ~A )
+        0       1
+        1       0
+
+19. `Logical AND ( && ), NOT ( ! ), OR ( || )`
+    + AND ( && ): evaluates operands and return true only if all are true.
+    + NOT ( ! ): converts operator to boolean and returns flipped value.
+    + OR ( || ): Returns true even if one of the multiple operands is true.
 
 20. **Loops**:
 
 - `For`
-- `For in`
-- `For of`
-- `While - Do While`
-- `Break - Continue`
-- `Nested loop`
+    + Syntax:
+        for (initialization; condition; step) {
+            //code
+        }
+    + How it works: 
+        1. Run initialization once
+        2. Check condition
+        3. Execute the block
+        4. Run step
+        5. Repeat
+    + Example:  for (let i = 0; i < 3; i++) {
+                    console.log(i);
+                }
+                // 0 1 2
+- `For in`: iterates over keys
+    const user = { name: "A", age: 20 };
 
-21. `Callback`
-22. `HTML DOM`
+    for (const key in user) {
+        console.log(key, user[key]);
+    }
+
+    //Not recommended for arrays
+        for (const i in [10, 20, 30]) {
+            console.log(i); // "0", "1", "2"
+        }
+- `For of`: iterates over values
+    const arr = [10, 20, 30];
+
+    for (const value of arr) {
+        console.log(value);
+    }
+
+    + Works with: array, string, map/set
+        for (const char of "hello") {
+            console.log(char);
+        }
+- `While - Do While`
+    + While
+        let i = 0;
+        while (i < 3) {
+        console.log(i);
+        i++;
+        }
+    + do...while: runs at least once
+        let i = 5;
+        do {
+        console.log(i);
+        } while (i < 3);
+- `Break - Continue`
+    + break: stops the loop completely
+        for (let i = 0; i < 5; i++) {
+            if (i === 3) break;
+        }
+    + continue: skips the current iteration
+        for (let i = 0; i < 5; i++) {
+            if (i === 2) continue;
+            console.log(i);
+        }
+        // 0 1 3 4
+- `Nested loop`: loop inside another loop
+    for (let i = 1; i <= 3; i++) {
+        for (let j = 1; j <= 2; j++) {
+            console.log(i, j);
+        }
+    }
+21. `Callback`: is a function passed as an argument to another function.
+    function myDisplayer(some) {
+        document.getElementById("demo").innerHTML = some;
+    }
+
+    function myCalculator(num1, num2, myCallback) {
+        let sum = num1 + num2;
+        myCallback(sum);
+    }
+
+    myCalculator(5, 5, myDisplayer); //not to use parenthesis myDisplayer()
+
+22. `HTML DOM`: DOM (Document Object Model)
+    + HTML is represented as a tree of objects
+    + Why the DOM matters:
+        Dynamic UI
+        Modify HTML/CSS with JavaScript
+        User interaction
 23. `Event listeners`
+    + A user action:    Click
+                        Input
+                        Submit
+                        Keydown
