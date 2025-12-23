@@ -469,7 +469,7 @@ Arrays are a special kind of objects, with numbered indexes.
     
         const status = age >=18 ? "adult" : "minor";
 
-12. `Nullish coalescing operator (??)`
+12. `Nullish coalescing operator (??)` ||
     + Returns the right-hand value only if left is `null` or `undefined`
         const name = user.name ?? "Guest";
     + Best for: Default values
@@ -643,6 +643,11 @@ Arrays are a special kind of objects, with numbered indexes.
         User interaction
 23. `Event listeners`
     + A user action:    Click
-                        Input
+                        Onchange
                         Submit
                         Keydown
+
+//Object mapper
+const status = {
+    "active" : 1
+}

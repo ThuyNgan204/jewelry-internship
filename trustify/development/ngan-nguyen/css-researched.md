@@ -221,6 +221,6 @@
  + `gap`: spacing between items.
  + `flex-grow`: item expands to fill space.
  + `flex-shrink`: item shrinks when space is limited.
- + `flex-basic`: default size of item before space distribution.
+ + `flex-basis`: default size of item before space distribution.
 
 **

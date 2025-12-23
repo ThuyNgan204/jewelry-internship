@@ -51,3 +51,7 @@ The CSS `@media` rule is used to add media queries to your style sheet.
 
 # Responsive Units
 Use `em` media queries
+
+
+//Grid system
+//Responsive by mobile first/ desktop first
