@@ -156,7 +156,7 @@
     .element {
         color: var(--main-color);
     }
-- `calc()`: performs mathematical calculations within CSS property values. It supports addition, subtraction, multiplication and division.
+- `calc()`: performs mathematdical calculations within CSS property values. It supports addition, subtraction, multiplication and division.
     width: calc(100% - 20px);
     font-size: calc(1em + 0.5vw);
 - `attr()`: retrieves the value of an HTML attribute of the element. Primarily used with the content property for generated content.

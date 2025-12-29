@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LUXGEM JEWELRY STORE</title>
         <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
     </head>
@@ -32,10 +33,12 @@
                     />
                 </li>
                 <li>
-                    <img
+                    <button onclick="showForm()">
+                        <img
                         src="../assets/icon/user.svg"
                         alt="user icon"
-                    />
+                        />
+                    </button>
                 </li>
                 <li>
                     <img
@@ -52,7 +55,31 @@
             </ul>
         </header>
 
-        <div class="container">
+        <!--User-->
+        <div id="user" class="modal">
+            <div id="login">
+                <form id="loginForm">
+                    <h2>ĐĂNG NHẬP</h2>
+                    <button type="button" class="close" onclick="closeForm()">+</button>
+                    <div class="loginInfo">
+                        <div class="col">
+                            <label for="usernameLogin">Tên đăng nhập:</label>
+                            <input type="text" id="usernameLogin"/>
+                            <div id="usernameError">Bạn chưa nhập tên đăng nhập.</div>
+
+                            <label for="passwordLogin">Mật khẩu:</label>
+                            <input type="password" id="passwordLogin"/>
+                            <div id="passwordError">Bạn chưa nhập mật khẩu.</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnLogin">Đăng nhập</button>
+                    <p>Bạn chưa có tài khoản? <a href="#" onclick="showSignUp">Đăng kí</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!--Content-->
+        <div id="content">
             <div class="banner">
                 <img class="slideShow" src="../assets/banner/banner.png" alt="banner">
             </div>
@@ -66,5 +93,7 @@
                 </div>
             </div>
         </div>
+
+        <script src="../javascript/customer.js"></script>
     </body>
 </html>

@@ -16,15 +16,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
+    z-index: 100;
     box-shadow: 0 .5em 1em rgba(0,0,0,.1);
 }
-header .navbar{
+.navbar{
     display: flex;
     gap: 50px;
 }
 
-header .navbar a{
+.navbar a{
     margin-left: auto;
     color: black;
     text-decoration: none;
@@ -32,25 +32,29 @@ header .navbar a{
     font-weight: 400;
 }
 
-header .navbar a:hover{
+.navbar a:hover{
     color: rgb(226, 193, 26);
 }
 
-header .navbar a.active{
+.navbar a.active{
     color: rgb(226, 193, 26);
 }
 
-header .logo img{
+.logo img{
     height: 70px;
 }
 
-header .icon{
+.icon{
     list-style-type: none;
     display: flex;
     gap: 10px;
 }
 
-header .icon img{
+.icon button{
+    background: none;
+}
+
+.icon img{
     width: 30px;
     height: 30px ;
 }
@@ -60,9 +64,12 @@ header .icon img{
 	margin: 0 auto;
 }
 
+#content {
+    margin-top: 80px;
+}
+
 .banner{
     width: 100vw;
-    margin-top: 80px;
     margin-left: calc(-50vw + 50%);
 }
 
@@ -72,5 +79,111 @@ header .icon img{
   display: block;
 }
 
+/*User*/
+.modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.6);
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow-y: auto;
+}
 
+#login {
+    width: 500px;
+    background-color: #fff;
+    position: relative;
+    margin: 120px auto 0 auto;
+    padding: 20px;
+    animation: topdown 0.7s;
+}
 
+#login h2{
+    font-family: 'Times New Roman', Times, serif;
+    display: inline-block;
+    font-weight: 900;
+}
+
+#login .close{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    font-size: 25pt;
+    transform: rotate(45deg);
+}
+
+#login .close:hover{
+    color: rgb(226, 193, 26);
+}
+
+#login .loginInfo{
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+#login label{
+    display: block;
+    font-weight: bold;
+    font-size: 13pt;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#login input{
+    display: inline-block;
+    width: 250px;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    line-height: 40px;
+    outline: none;
+    font-size: 13pt;   
+}
+
+#login input:focus{
+    border: 1px solid rgb(226, 193, 26);
+}
+
+#login div[id*="Error"]{
+    color: red;
+    padding-top: 10px;
+}
+
+#login #btnLogin{
+    display: block;
+    margin: 50px auto 0;
+    background-color: rgb(226, 193, 26);
+    width: 140px;
+    height: 40px;
+    font-size: 15pt;
+    cursor: pointer;
+    border-radius: 999px;
+    box-shadow: 2px 2px 10px 0 rgba(0,0,0,.7);
+}
+
+#login #btnLogin:hover{
+    background-color: rgb(205, 192, 127);
+}
+
+#login #btnLogin:active{
+    box-shadow: none;
+}
+
+#login p{
+    margin-top: 60px;
+    text-align: center;
+}
+
+#login p a{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(226, 193, 26);
+}
