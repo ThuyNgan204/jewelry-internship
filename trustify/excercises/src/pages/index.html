@@ -6,15 +6,11 @@
         <title>LUXGEM JEWELRY STORE</title>
         <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
     </head>
-    <body>
+    <body onload="checkLogin()">
         <!--Header-->
         <header>
             <a href="index.html" class="logo">
-                <img
-                    class="logo"
-                    src="../assets/icon/logo_minisize.png"
-                    alt="LUXGEM LOGO"
-                />
+                <img class="logo" src="../assets/icon/logo_minisize.png" alt="LUXGEM LOGO"/>
             </a>
 
             <nav class="navbar">
@@ -26,32 +22,9 @@
             </nav>
 
             <ul class="icon">
-                <li>
-                    <img
-                        src="../assets/icon/setting.svg"
-                        alt="setting icon"
-                    />
-                </li>
-                <li>
-                    <button onclick="showForm()">
-                        <img
-                        src="../assets/icon/user.svg"
-                        alt="user icon"
-                        />
-                    </button>
-                </li>
-                <li>
-                    <img
-                        src="../assets/icon/cart.svg"
-                        alt="cart icon"
-                    />
-                </li>
-                <li>
-                    <img
-                        src="../assets/icon/search.svg"
-                        alt="search icon"
-                    />
-                </li>
+                <li><button onclick="showForm()"><img src="../assets/icon/user.svg" alt="user icon" /></button></li>
+                <li><img src="../assets/icon/cart.svg" alt="cart icon"/></li>
+                <li><img src="../assets/icon/search.svg" alt="search icon"/></li>
             </ul>
         </header>
 
@@ -66,14 +39,46 @@
                             <label for="usernameLogin">Tên đăng nhập:</label>
                             <input type="text" id="usernameLogin"/>
                             <div id="usernameError">Bạn chưa nhập tên đăng nhập.</div>
-
                             <label for="passwordLogin">Mật khẩu:</label>
                             <input type="password" id="passwordLogin"/>
                             <div id="passwordError">Bạn chưa nhập mật khẩu.</div>
                         </div>
                     </div>
                     <button type="submit" id="btnLogin">Đăng nhập</button>
-                    <p>Bạn chưa có tài khoản? <a href="#" onclick="showSignUp">Đăng kí</a></p>
+                    <p>Bạn chưa có tài khoản? <a href="#" onclick="showSignup()">Đăng ký</a></p>
+                </form>
+            </div>
+
+            <div id="signup">
+                <form id="signupForm">
+                    <h2>ĐĂNG KÝ</h2>
+                    <button type="button" class="close" onclick="closeForm()">+</button>
+                    <div class="signupInfo">
+                        <div class="col">
+                            <label for="fullname">Họ và tên:</label>
+                            <input type="text" id="fullname">
+                            <div id="fullnameError">Bạn chưa nhập họ tên.</div>
+                            <label for="address">Địa chỉ:</label>
+                            <input type="text" id="address">
+                            <div id="addressError">Bạn chưa nhập địa chỉ.</div>
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="text" id="phone">
+                            <div id="phoneError">Bạn chưa nhập số điện thoại.</div>
+                        </div>
+                        <div class="col">
+                            <label for="usernameSignup">Tên đăng nhập:</label>
+                            <input type="text" id="usernameSignup">
+                            <div id="usernameSignupError">Bạn chưa nhập tên đăng nhập.</div>
+                            <label for="passwordSignup">Mật khẩu:</label>
+                            <input type="password" id="passwordSignup">
+                            <div id="passwordSignupError">Bạn chưa nhập mật khẩu.</div>
+                            <label for="passwordSignup2">Nhập lại mật khẩu:</label>
+                            <input type="password" id="passwordSignup2">
+                            <div id="passwordSignup2Error">Mật khẩu không trùng khớp</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnSignup">Đăng ký</button>
+                        <p>Bạn đã có tài khoản? <a href="#" onclick="showLogin()">Đăng nhập</a></p>
                 </form>
             </div>
         </div>
@@ -93,7 +98,7 @@
                 </div>
             </div>
         </div>
-
+        <div id="customAlert"></div>
         <script src="../javascript/customer.js"></script>
     </body>
 </html>

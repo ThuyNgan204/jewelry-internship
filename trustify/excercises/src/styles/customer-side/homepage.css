@@ -8,11 +8,11 @@ body, html, *{
 
 header {
     position: fixed;
-    height: 80px;
+    height: 85px;
     top: 0;
     left: 0;
     right: 0;
-    padding: 2em;
+    padding: 1em 2em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -48,10 +48,40 @@ header {
     list-style-type: none;
     display: flex;
     gap: 10px;
+    height: 25px;
 }
 
 .icon button{
+    display: block;
     background: none;
+    font-size: 12pt;
+    height: 25px;
+    text-align: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.icon #btnLogout{
+    background-color: rgb(226, 193, 26);
+    color: #fff;
+    text-align: center;
+    height: 25px;
+    width: 100px;
+    line-height: 25px;
+    border-radius: 10px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: none;
+}
+
+.icon li:hover > #btnLogout{
+    display: block;
+}
+
+.icon li > #btnLogout:hover{
+    background-color: #fff;
+    border: 1px solid rgb(226, 193, 26);
+    color: rgb(176, 151, 23);
 }
 
 .icon img{
@@ -65,7 +95,7 @@ header {
 }
 
 #content {
-    margin-top: 80px;
+    margin-top: 85px;
 }
 
 .banner{
@@ -186,4 +216,123 @@ header {
     text-decoration: none;
     font-weight: bold;
     color: rgb(226, 193, 26);
+}
+
+
+#signup {
+    width: 700px;
+    background-color: #fff;
+    position: relative;
+    margin: 60px auto 0 auto;
+    padding: 20px;
+    animation: topdown 0.7s;
+}
+
+#signup h2{
+    font-family: 'Times New Roman', Times, serif;
+    display: inline-block;
+    font-weight: 900;
+}
+
+#signup .close{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    font-size: 25pt;
+    transform: rotate(45deg);
+}
+
+#signup .close:hover{
+    color: rgb(226, 193, 26);
+}
+
+#signup .signupInfo{
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+#signup label{
+    display: block;
+    font-weight: bold;
+    font-size: 13pt;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#signup input{
+    display: inline-block;
+    width: 250px;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    line-height: 40px;
+    outline: none;
+    font-size: 13pt;   
+}
+
+#signup input:focus{
+    border: 1px solid rgb(226, 193, 26);
+}
+
+#signup div[id*="Error"]{
+    color: red;
+    padding-top: 10px;
+}
+
+#signup #btnSignup{
+    display: block;
+    margin: 50px auto 0;
+    background-color: rgb(226, 193, 26);
+    width: 140px;
+    height: 40px;
+    font-size: 15pt;
+    cursor: pointer;
+    border-radius: 999px;
+    box-shadow: 2px 2px 10px 0 rgba(0,0,0,.7);
+}
+
+#signup #btnsignup:hover{
+    background-color: rgb(205, 192, 127);
+}
+
+#signup #btnsignup:active{
+    box-shadow: none;
+}
+
+#signup p{
+    margin-top: 60px;
+    text-align: center;
+}
+
+#signup p a{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(226, 193, 26);
+}
+
+/*Custom Alert*/
+#customAlert{
+    visibility: hidden;
+    min-width: 250px;
+    color: #fff;
+    font-size: 14pt;
+    text-align: center;
+    border-radius: 2px;
+    padding: 20px;
+    position: fixed;
+    z-index: 102;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+}
+
+#customAlert.show {
+    visibility: visible;
+ 	animation: fadein 0.5s, fadeout 0.5s 3s;
 }
