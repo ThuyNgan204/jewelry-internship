@@ -185,6 +185,7 @@ header {
 #login div[id*="Error"]{
     color: red;
     padding-top: 10px;
+    display: none;
 }
 
 #login #btnLogin{
@@ -226,6 +227,7 @@ header {
     margin: 60px auto 0 auto;
     padding: 20px;
     animation: topdown 0.7s;
+    display: none;
 }
 
 #signup h2{
@@ -283,6 +285,7 @@ header {
 #signup div[id*="Error"]{
     color: red;
     padding-top: 10px;
+    display: none;
 }
 
 #signup #btnSignup{

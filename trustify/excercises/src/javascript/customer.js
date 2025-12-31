@@ -12,10 +12,26 @@ function createAdmin() {
 function showForm() {
     var userform = document.getElementById('user');
     userform.style.display= 'block';
+    resetAuthForm();
+
+    document.getElementById('login').style.display = 'block';
+    document.getElementById('signup').style.display = 'none';
 }
 function closeForm() {
     var userform= document.getElementById('user');
     userform.style.display= 'none';
+    resetAuthForm();
+}
+function resetAuthForm() {
+    document.getElementById('loginForm').reset();
+    document.getElementById('signupForm').reset();
+
+    const errors = document.querySelectorAll(
+        '#loginForm div[id$="Error"], #signupForm div[id$="Error"]'
+    );
+    errors.forEach(err => {
+        err.style.display = 'none';
+    })
 }
 function showSignup() {
     document.getElementById('login').style.display = 'none';
@@ -111,8 +127,12 @@ function createUser(e) {
     }
     userArray.push(user);
     localStorage.setItem('user', JSON.stringify(userArray));
+    localStorage.setItem('userLogin', JSON.stringify(user));
     customAlert('Bạn đã đăng ký thành công!', 'success');
-    showLogin();
+    closeForm();
+    setTimeout(() => {
+        window.location.reload();
+    }, 10);
 }
 function login(e) {
     e.preventDefault();
@@ -158,12 +178,12 @@ function checkLogin(){
         var user = JSON.parse(localStorage.getItem('userLogin'));
         var i = '';
         if(user.username == 'admin'){
-            i = '<li><button>'+user.fullname+'</button><button id="btnLogout" onclick="logout(\'../pages/index.html\')">Đăng xuất</button></li>'+
+            i = '<li><button>Hello, '+user.username+'</button><button id="btnLogout" onclick="logout(\'../pages/index.html\')">Đăng xuất</button></li>'+
                 '<li><img src="../assets/icon/setting.svg" alt="setting icon"/></li>'+
                 '<li><img src="../assets/icon/cart.svg" alt="cart icon"/></li>'+
                 '<li><img src="../assets/icon/search.svg" alt="search icon"/></li>';
         }else{
-            i = '<li><button>'+user.fullname+'</button><button id="btnLogout" onclick="logout(\'index.html\')">Đăng xuất</button></li>'+
+            i = '<li><button>Hello, '+user.username+'</button><button id="btnLogout" onclick="logout(\'index.html\')">Đăng xuất</button></li>'+
                 '<li><img src="../assets/icon/cart.svg" alt="cart icon"/></li>'+
                 '<li><img src="../assets/icon/search.svg" alt="search icon"/></li>';
         }
@@ -189,4 +209,11 @@ function customAlert(message, type){
         }, 3500
     );
 }
-
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => {
+        const error = input.nextElementSibling;
+        if (error && error.id.includes('Error')){
+            error.style.display = 'none';
+        }
+    })
+})
