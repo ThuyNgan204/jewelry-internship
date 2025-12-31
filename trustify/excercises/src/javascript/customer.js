@@ -209,6 +209,26 @@ function customAlert(message, type){
         }, 3500
     );
 }
+
+/*Banner*/
+var slideIndex = 0;
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName('slideShow');
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+    }
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.display = 'block';
+
+    setTimeout(showSlides, 3000);
+}
+
+showSlides();
+
+
+
 document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', () => {
         const error = input.nextElementSibling;

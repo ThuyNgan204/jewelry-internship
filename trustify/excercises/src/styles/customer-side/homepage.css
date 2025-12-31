@@ -6,6 +6,7 @@ body, html, *{
     font-family: sans-serif;
 }
 
+/*Header*/
 header {
     position: fixed;
     height: 85px;
@@ -89,6 +90,7 @@ header {
     height: 30px ;
 }
 
+/*Main Content*/
 .container {
     width: 1200px;
 	margin: 0 auto;
@@ -98,15 +100,38 @@ header {
     margin-top: 85px;
 }
 
+/*Banner*/
 .banner{
     width: 100vw;
     margin-left: calc(-50vw + 50%);
+    position: relative;
 }
 
 .banner img {
   width: 100%;
-  height: auto;
+  height: 450px;
   display: block;
+}
+
+.banner .slideShow {
+    display: none;
+}
+
+.banner .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
 }
 
 /*User*/
@@ -219,7 +244,7 @@ header {
     color: rgb(226, 193, 26);
 }
 
-
+/*Signup*/
 #signup {
     width: 700px;
     background-color: #fff;
