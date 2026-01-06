@@ -21,9 +21,13 @@ header {
     box-shadow: 0 .5em 1em rgba(0,0,0,.1);
     background-color: #fff;
 }
-.navbar{
+.navbar #navMenu{
     display: flex;
     gap: 50px;
+}
+
+.navbar li{
+    list-style-type: none;
 }
 
 .navbar a{
@@ -38,9 +42,6 @@ header {
     color: rgb(226, 193, 26);
 }
 
-.navbar a.active{
-    color: rgb(226, 193, 26);
-}
 
 .logo img{
     height: 70px;
@@ -364,4 +365,35 @@ header {
 #customAlert.show {
     visibility: visible;
  	animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+
+/*Product*/
+#mainContainer{
+    margin-top: 30px;
+    background-color: #fff;
+}
+
+#product-list{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.card{
+    flex: 0 0 calc(25% - 12px);
+    max-width: calc(25% - 12px);
+    background-color: #f7f7f7;
+    text-align: center;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    padding: 20px 16px 40px;
+    box-sizing: border-box;
+}
+
+.card img{
+	width: 90%;
+	margin: 10px 0 10px 0;
+	transition: 0.4s;
 }
