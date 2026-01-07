@@ -93,6 +93,25 @@
                     <!--Product-->
                 </div>
 
+                <div id="productInfo" class="modal">
+                    <div id="info">
+                        <button type="button" class="close" onclick="closeProductInfo()">+</button>
+                        <div class="left">
+                            <img id="imgBig" src="">
+                            <div id="thumbList" class="thumb-list"></div>
+                        </div>
+
+                        <div class="right">
+                            <p id="productName"></p>
+                            <p id="productPrice"></p>
+                            <p>Số lượng</p>
+                            <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
+                            <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
+                            <p id="productDescription"></p>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="page"></div>
             </div>
         </div>

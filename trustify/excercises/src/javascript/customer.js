@@ -140,6 +140,46 @@ function showProduct() {
     document.getElementById('product-list').innerHTML = x;
 }
 
+function showProductInfo(productid) {
+    document.getElementById('productInfo').style.display = 'block';
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    for (var i = 0; i < productArray.length; i++) {
+        if (productArray[i].productId == productid) {
+            document.getElementById('productName').innerHTML = productArray[i].name;
+            document.getElementById('productPrice').innerHTML = currency(productArray[i].price);
+            
+            var imgBig = document.getElementById('imgBig');
+            imgBig.src = productArray[i].img[0];
+
+            var thumbList = document.getElementById('thumbList');
+            thumbList.innerHTML = '';
+
+            productArray[i].img.forEach((src, index) => {
+                var img = document.createElement('img');
+                img.src = src;
+
+                if (index === 0) img.classList.add('active');
+
+                img.onclick = function () {
+                    imgBig.src = this.src;
+                    document.querySelectorAll('.thumb-list img').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                }
+
+                thumbList.appendChild(img);
+            });
+
+            document.getElementById('quantity').value = 1;
+            document.querySelector('#info .right button.addToCart').setAttribute('onclick', 'addToCart('+productid+')');
+            document.getElementById('productDescription').innerHTML = productArray[i].description;
+        }
+    }
+}
+
+function closeProductInfo() {
+    document.getElementById('productInfo').style.display = 'none'
+}
+
 /*USER*/
 function createAdmin() {
     if(localStorage.getItem('user')===null){
@@ -369,11 +409,13 @@ showSlides();
 
 
 
-document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', () => {
-        const error = input.nextElementSibling;
-        if (error && error.id.includes('Error')){
-            error.style.display = 'none';
-        }
-    })
-})
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            const error = input.nextElementSibling;
+            if (error && error.id.includes('Error')){
+                error.style.display = 'none';
+            }
+        });
+    });
+});
