@@ -32,10 +32,11 @@ header {
 
 .navbar a{
     margin-left: auto;
-    color: black;
+    color: #282828;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
+    font-family: sans-serif;
 }
 
 .navbar a:hover{
@@ -397,3 +398,56 @@ header {
 	margin: 10px 0 10px 0;
 	transition: 0.4s;
 }
+
+.card p{
+    color: #282828;
+    font-size: 12pt;
+    font-weight: 300;
+    font-family: sans-serif;
+    padding-bottom: 10px;
+}
+
+.card .btn{
+    width: 50%;
+	height: 40px;
+	font-size: 14pt;
+	background-color: #fff;
+	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+	color: #000;
+	font-weight: bold;
+	line-height: 40px;
+	cursor: pointer;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	transition: 0.4s;
+	opacity: 0;
+}
+
+.card:hover .btn{
+    top: 50%;
+    opacity: 1;
+}
+
+.card .btn:hover{
+    color: rgb(226, 193, 26);
+}
+
+#page{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#page .pageNumber a{
+    text-decoration: none;
+    color: #282828;
+    font-size: 18px;
+}
+
+#page .pageNumber a:hover{
+    color: rgb(226, 193, 26);
+}
+
