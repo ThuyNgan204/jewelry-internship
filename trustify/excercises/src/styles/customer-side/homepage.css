@@ -620,3 +620,133 @@ header {
     color: rgb(226, 193, 26);
 }
 
+/*Footer*/
+footer{
+    background-color: #FEFDFD;
+    width: 100%;
+    height: 350px;
+    margin-top: 70px;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    padding: 50px 180px 50px 150px;
+    box-shadow: 0 -0.5em 1em rgba(0, 0, 0, 0.08);
+}
+
+footer img{
+    width: 300px;
+    height: 110px !important;
+}
+
+.footerLeft{
+    width: 40%;
+}
+
+.footerLeft .companyName{
+    color: #282828;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.footerLeft .companyLocation,
+.footerLeft .hotline{
+    color: #282828;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.footerLeft .copyright{
+    color: #282828;
+    font-size: 13px;
+    margin-top: 30px;
+}
+
+.footerCenter{
+    width: 30%;
+}
+
+.footerCenter .customerService{
+    color: #282828;
+    font-weight: 600;
+}
+
+.footerCenter .customerService::after{
+    content: '';
+    background-color: rgb(226, 193, 26);
+    width: 180px;
+    height: 2px;
+    display: block;
+    margin-top: 10px;
+}
+
+.footerCenter .blog{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footerCenter .blog a{
+    text-decoration: none;
+    color: #282828;
+    font-size: 16px;
+}
+
+.footerCenter .blog a:hover{
+    color: rgb(226, 193, 26);
+    cursor: pointer;
+}
+
+.footerRight{
+    width: 30%;
+}
+
+.footerRight .companySocial{
+    color: #282828;
+    font-weight: 600;
+}
+
+.footerRight .companySocial::after{
+    content: '';
+    background-color: rgb(226, 193, 26);
+    width: 195px;
+    height: 2px;
+    display: block;
+    margin-top: 10px;
+}
+
+.footerRight .socialIcon{
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.footerRight .paymentMethod{
+    margin: 40px 0 10px;
+    color: #282828;
+    font-weight: 600;
+}
+
+.footerRight .paymentMethod::after{
+    content: '';
+    background-color: rgb(226, 193, 26);
+    width: 235px;
+    height: 2px;
+    display: block;
+    margin-top: 10px;
+}
+
+.footerRight .socialIcon img{
+    width: 40px;
+    height: 40px !important;
+}
+
+.footerRight .paymentIcon img{
+    width: 50px;
+    height: 50px !important;
+}
+
+
+
+
