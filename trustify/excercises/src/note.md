@@ -1,0 +1,7 @@
+- Chuyển sản phẩm từ custome side sang bản trong quản lý sản phẩm của admin
+- Đổi từ trang chủ sang admin services
+- nút xoá ảnh trong thêm sản phẩm 
+- Quản lý đơn hàng
+- quản lý người dùng
+- Responsive cần sửa nút "sửa" và "xoá" đè chồng lên nhau
+- Nút đăng xuất admin
