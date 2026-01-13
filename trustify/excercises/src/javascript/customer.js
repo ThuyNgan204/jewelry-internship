@@ -180,6 +180,16 @@ function closeProductInfo() {
     document.getElementById('productInfo').style.display = 'none'
 }
 
+function quantityDown() {
+    if (document.getElementById('quantity').value > 1){
+        document.getElementById('quantity').value--;
+    }
+}
+
+function quantityUp() {
+    document.getElementById('quantity').value++;
+}
+
 /*USER*/
 function createAdmin() {
     if(localStorage.getItem('user')===null){
@@ -371,6 +381,72 @@ function checkLogin(){
         
     }
 }
+
+/*SEARCH*/
+const search = document.getElementById('search');
+const searchArea = document.getElementById('searchArea');
+const searchInput = document.getElementById('searchProduct');
+const btnSearch = document.getElementById('btnSearch');
+const result = document.getElementById('result');
+
+btnSearch.addEventListener('click', (e) => {
+    e.stopPropagation();
+    search.style.display = 'block';
+    searchInput.focus();
+
+    result.innerHTML = `<p class="empty">Không có sản phẩm nào.</p>`;
+});
+
+document.addEventListener('click', (e) => {
+    if (search.style.display === 'block' && !searchArea.contains(e.target)) {
+        closeSearch();
+    }
+});
+
+searchArea.addEventListener('click', e => e.stopPropagation());
+
+function closeSearch() {
+    search.style.display = 'none';
+    searchInput.value = '';
+    result.innerHTML = '';
+}
+
+searchInput.addEventListener('input', () => {
+    const keyword = searchInput.value.trim().toLowerCase();
+    result.innerHTML = '';
+
+    const products = JSON.parse(localStorage.getItem('product')) || [];
+
+    if (!keyword) {
+        result.innerHTML = `<p class="empty">Không có sản phẩm nào.</p>`;
+        return;
+    }
+
+    const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(keyword)
+    );
+
+    if (filtered.length === 0) {
+        result.innerHTML = `<p class="empty">Không có sản phẩm nào.</p>`;
+        return;
+    }
+
+    filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+
+        div.innerHTML = `
+            <img src="${item.img[0]}" alt="">
+            <div class="result-info">
+                <span class="result-name">${item.name}</span>
+                <span class="result-price">${currency(item.price)}</span>
+            </div>
+        `;
+
+        div.onclick = () => showProductInfo(item.productId);
+        result.appendChild(div);
+    });
+});
 
 /*CUSTOM ALERT*/
 function customAlert(message, type){

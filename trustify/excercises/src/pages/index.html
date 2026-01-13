@@ -20,7 +20,7 @@
             <ul class="icon">
                 <li><button onclick="showForm()"><img src="../assets/icon/user.svg" alt="user icon" /></button></li>
                 <li><img src="../assets/icon/cart.svg" alt="cart icon"/></li>
-                <li><img src="../assets/icon/search.svg" alt="search icon"/></li>
+                <li><button id="btnSearch" onclick="showSearch()"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>
             </ul>
         </header>
 
@@ -76,6 +76,20 @@
                     <button type="submit" id="btnSignup">Đăng ký</button>
                         <p>Bạn đã có tài khoản? <a href="#" onclick="showLogin()">Đăng nhập</a></p>
                 </form>
+            </div>
+        </div>
+
+        <!--Search-->
+        <div id="search" class="modal">
+            <div id="searchArea">
+                <div id="searchBar">
+                    <img src="../assets/icon/search.svg" alt="search icon"/>
+                    <input type="search" id="searchProduct" name="searchProduct" placeholder="Tìm kiếm nhanh">
+                </div>
+
+                <div id="result">
+
+                </div>
             </div>
         </div>
 
