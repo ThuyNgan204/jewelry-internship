@@ -852,6 +852,153 @@ footer img{
     color: #C48C46;
 }
 
+#cart{
+    margin-top: 85px;
+}
+
+#cart .heading{
+    height: 80px;
+    background-color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart .heading p{
+    font-size: 20pt;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #282828;
+}
+
+#cart #mainCart{
+     margin: 20px 180px 0px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 140px 140px 40px;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    color: #282828;
+}
+
+.cart-item img {
+    width: 90px;
+}
+
+.cart-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #282828;
+}
+
+.cart-quantity{
+    display: flex;
+    gap: 20px;
+}
+
+.cart-quantity button {
+    background-color: transparent;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.cart-quantity button:hover{
+    color: #C48C46;
+}
+
+.cart-remove{
+    background-color: transparent;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.cart-remove:hover{
+    color: #C48C46;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.purchase{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 15px;
+}
+
+.purchase button{
+    background-color: rgba(230, 202, 67, 0.541);
+    width: 100px;
+    height: 40px;
+    font-size: 12pt;
+    color: #282828;
+}
+
+.purchase button:hover{
+    background-color: #fff;
+    color: #C48C46;
+    border: 1px solid #C48C46;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+}
+
+.order-item {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 20px 180px;
+    background: #fafafa;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.order-status {
+    color: #C48C46;
+}
+
+.order-product {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.order-product span{
+    display: flex;
+    align-items: center;
+}
+
+.order-product img {
+    width: 40px;
+}
+
+.order-total{
+    display: flex;
+    justify-content: end;
+}
+
+
+
+
+
+
+
 
 
 

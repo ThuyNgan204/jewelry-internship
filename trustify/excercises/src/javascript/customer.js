@@ -74,6 +74,9 @@ function createProduct() {
 }
 
 function showProduct() {
+    var productList = document.getElementById("product-list");
+    if (!productList) return;
+
     var url = document.location.href;
     var temp = url.split("?");
     var x = '';
@@ -370,14 +373,14 @@ function checkLogin(){
         if(user.username == 'admin'){
             i = '<li><button>Hello, '+user.username+'</button><button id="btnLogout" onclick="logout(\'../pages/index.html\')">Đăng xuất</button></li>'+
                 '<li><img src="../assets/icon/setting.svg" alt="setting icon"/></li>'+
-                '<li><img src="../assets/icon/cart.svg" alt="cart icon"/></li>'+
-                '<li><img src="../assets/icon/search.svg" alt="search icon"/></li>';
+                '<li><a href="./cart.html"><img src="../assets/icon/cart.svg" alt="cart icon"/></a></li>'+
+                '<li><button id="btnSearch"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>';
         }else{
             i = '<li><button>Hello, '+user.username+'</button><button id="btnLogout" onclick="logout(\'index.html\')">Đăng xuất</button></li>'+
-                '<li><img src="../assets/icon/cart.svg" alt="cart icon"/></li>'+
-                '<li><img src="../assets/icon/search.svg" alt="search icon"/></li>';
+                '<li><a href="./cart.html"><img src="../assets/icon/cart.svg" alt="cart icon"/></a></li>'+
+                '<li><button id="btnSearch"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>';
         }
-        document.querySelector('header ul').innerHTML = i;
+        document.querySelector('header .icon').innerHTML = i;
         
     }
 }
@@ -386,10 +389,13 @@ function checkLogin(){
 const search = document.getElementById('search');
 const searchArea = document.getElementById('searchArea');
 const searchInput = document.getElementById('searchProduct');
-const btnSearch = document.getElementById('btnSearch');
 const result = document.getElementById('result');
+const headerIcon = document.querySelector('header .icon');
 
-btnSearch.addEventListener('click', (e) => {
+headerIcon.addEventListener('click', (e) => {
+    const btn = e.target.closest('#btnSearch');
+    if (!btn) return;
+    
     e.stopPropagation();
     search.style.display = 'block';
     searchInput.focus();
@@ -448,24 +454,6 @@ searchInput.addEventListener('input', () => {
     });
 });
 
-/*CUSTOM ALERT*/
-function customAlert(message, type){
-    if(type == 'success'){
-        document.getElementById("customAlert").style.backgroundColor = '#4CAF50';
-    }
-    if(type == 'warning'){
-        document.getElementById("customAlert").style.backgroundColor = '#f44336';  
-    }
-    document.getElementById("customAlert").innerHTML = message;
-    var x = document.getElementById("customAlert");
-    x.className = "show";
-    setTimeout(
-        function() {
-            x.className = x.classList.remove("show");
-        }, 3500
-    );
-}
-
 /*Banner*/
 var slideIndex = 0;
 
@@ -483,7 +471,234 @@ function showSlides() {
 
 showSlides();
 
+/*Cart*/
+function addToCart(productid) {
+    var productArray = JSON.parse(localStorage.getItem('product')) || [];
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    var quantity = parseInt(document.getElementById('quantity').value);
+
+    if (quantity < 1) {
+        alert("Số lượng không hợp lệ");
+        return;
+    }
+
+    var product = productArray.find(p => p.productId == productid);
+
+    if (!product) {
+        alert("Không tìm thấy sản phẩm");
+        return;
+    }
+
+    var cartItem = cart.find(item => item.productId == productid);
+
+    if (cartItem) {
+        cartItem.quantity += quantity;
+    } else {
+        cart.push({
+            productId: product.productId,
+            name: product.name,
+            price: product.price,
+            img: product.img[0],
+            quantity: quantity
+        });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    customAlert('Đã thêm sản phẩm vào giỏ hàng', 'success');
+
+    if (typeof showCart === 'function') {
+    showCart();
+}
+
+}
+
+function showCart() {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    var mainCart = document.getElementById('mainCart');
+
+    mainCart.innerHTML = '';
+
+    if (cart.length === 0) {
+        mainCart.innerHTML = '<p class="empty-cart">Giỏ hàng của bạn đang trống</p>';
+        return;
+    }
+
+    var total = 0;
+
+    cart.forEach((item, index) => {
+        var itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        mainCart.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}" alt="${item.name}">
+                
+                <div class="cart-info">
+                    <p class="cart-name">${item.name}</p>
+                    <p class="cart-price">${currency(item.price)}</p>
+                </div>
+
+                <div class="cart-quantity">
+                    <button onclick="updateQuantity(${index}, -1)">−</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+
+                <div class="cart-total">
+                    ${currency(itemTotal)}
+                </div>
+
+                <button class="cart-remove" onclick="removeItem(${index})">✕</button>
+            </div>
+        `;
+    });
+
+    mainCart.innerHTML += `
+        <div class="cart-summary">
+            <p>Tổng tiền:</p>
+            <p class="cart-sum">${currency(total)}</p>
+        </div>
+        <div class="purchase">
+            <button class="cart-remove-all" onclick="removeAllItem()">Xóa tất cả</button>
+            <button class="cart-purchase" onclick="purchase()">Thanh toán</button>
+        </div>
+    `;
+}
+
+function updateQuantity(index, change) {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart[index].quantity += change;
+
+    if (cart[index].quantity < 1) {
+        cart.splice(index, 1);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    showCart();
+}
+
+function removeItem(index) {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    showCart();
+}
+
+function removeAllItem() {
+    localStorage.removeItem('cart');
+    showCart();
+}
+
+function purchase() {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cart.length === 0) {
+        alert("Giỏ hàng trống, không thể thanh toán");
+        return;
+    }
+
+    var user = JSON.parse(localStorage.getItem('userLogin'));
+
+    if (!user) {
+        alert("Vui lòng đăng nhập để thanh toán");
+        return;
+    }
+
+    var orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    var order = {
+        orderId: Date.now(),
+        userId: user.username,
+        items: cart,
+        total: cart.reduce((sum, i) => sum + i.price * i.quantity, 0),
+        date: new Date().toLocaleString(),
+        status: "Đang xử lý"
+    };
+
+    orders.push(order);
+
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.removeItem('cart');
+
+    customAlert('Thanh toán thành công', 'success');
+
+    showOrders();
+    showCart();
+}
+
+function showOrders() {
+    var user = JSON.parse(localStorage.getItem('userLogin'));
+    var orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    var orderSection = document.getElementById('orderSection');
+    var orderArea = document.getElementById('orderArea');
+
+    if (!user) {
+        orderSection.style.display = 'none';
+        return;
+    }
+
+    var userOrders = orders
+        .filter(o => o.userId === user.username)
+        .reverse();
+
+    if (userOrders.length === 0) {
+        orderSection.style.display = 'none';
+        orderArea.innerHTML = '';
+        return;
+    }
+
+    orderSection.style.display = 'block';
+    orderArea.innerHTML = '';
+
+    userOrders.forEach(order => {
+        orderArea.innerHTML += `
+            <div class="order-item">
+                <div class="order-header">
+                    <span>Mã đơn: ${order.orderId}</span>
+                    <span>${order.date}</span>
+                    <span class="order-status">${order.status}</span>
+                </div>
+
+                <div class="order-products">
+                    ${order.items.map(item => `
+                        <div class="order-product">
+                            <img src="${item.img}">
+                            <span>${item.name} × ${item.quantity}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <p class="order-total">
+                    Tổng tiền: ${currency(order.total)}
+                </p>
+            </div>
+        `;
+    });
+}
+
+/*CUSTOM ALERT*/
+function customAlert(message, type){
+    if(type == 'success'){
+        document.getElementById("customAlert").style.backgroundColor = '#4CAF50';
+    }
+    if(type == 'warning'){
+        document.getElementById("customAlert").style.backgroundColor = '#f44336';  
+    }
+    document.getElementById("customAlert").innerHTML = message;
+    var x = document.getElementById("customAlert");
+    x.className = "show";
+    setTimeout(
+        function() {
+            x.className = x.classList.remove("show");
+        }, 3500
+    );
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('input').forEach(input => {

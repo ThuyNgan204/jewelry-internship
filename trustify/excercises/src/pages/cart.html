@@ -6,7 +6,7 @@
         <title>LUXGEM JEWELRY STORE</title>
         <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
     </head>
-    <body onload="checkLogin(), showProduct(), showMenu(), showOrders()">
+    <body onload="checkLogin(), showProduct(), showMenu(), showCart(), showOrders()">
         <!--Header-->
         <header>
             <a href="index.html" class="logo">
@@ -20,7 +20,7 @@
             <ul class="icon">
                 <li><button onclick="showForm()"><img src="../assets/icon/user.svg" alt="user icon" /></button></li>
                 <li><a href="./cart.html"><img src="../assets/icon/cart.svg" alt="cart icon"/></a></li>
-                <li><button id="btnSearch"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>
+                <li><button id="btnSearch" onclick="showSearch()"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>
             </ul>
         </header>
 
@@ -94,39 +94,37 @@
         </div>
 
         <!--Content-->
-        <div id="content">
-            <div class="banner">
-                <img class="slideShow" src="../assets/banner/banner.png" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-flashsale.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-sam.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-ring.jpg" alt="banner">
+        <div id="cart">
+            <div id="orderSection" style="display: none;">
+                <div class="heading">
+                    <p>Đơn hàng đã đặt</p>
+                </div>
+                <div id="orderArea"></div>
             </div>
 
-            <div class="container" id="mainContainer">
-                <div id="product-list">
-                    <!--Product-->
+            <div class="heading">
+                <p>Giỏ hàng</p>
+            </div>
+            <div id="mainCart"></div>
+
+        </div>
+
+        <div id="productInfo" class="modal">
+            <div id="info">
+                <button type="button" class="close" onclick="closeProductInfo()">+</button>
+                <div class="left">
+                    <img id="imgBig" src="">
+                    <div id="thumbList" class="thumb-list"></div>
                 </div>
 
-                <div id="productInfo" class="modal">
-                    <div id="info">
-                        <button type="button" class="close" onclick="closeProductInfo()">+</button>
-                        <div class="left">
-                            <img id="imgBig" src="">
-                            <div id="thumbList" class="thumb-list"></div>
-                        </div>
-
-                        <div class="right">
-                            <p id="productName"></p>
-                            <p id="productPrice"></p>
-                            <p>Số lượng</p>
-                            <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
-                            <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
-                            <p id="productDescription"></p>
-                        </div>
-                    </div>
+                <div class="right">
+                    <p id="productName"></p>
+                    <p id="productPrice"></p>
+                    <p>Số lượng</p>
+                    <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
+                    <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
+                    <p id="productDescription"></p>
                 </div>
-
-                <div id="page"></div>
             </div>
         </div>
 
