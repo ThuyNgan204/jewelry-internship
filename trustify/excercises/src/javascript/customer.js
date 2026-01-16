@@ -21,6 +21,19 @@ function showMenu() {
     ul.innerHTML = li;
 }
 
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+});
+
+navMenu.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+        navMenu.classList.remove('show');
+    }
+});
+
 /*PRODUCT*/
 function createProduct() {
     if(localStorage.getItem('product')===null){
