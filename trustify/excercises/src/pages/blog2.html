@@ -5,6 +5,68 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LUXGEM JEWELRY STORE</title>
         <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
+        <style>
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background-color: #fafafa;
+                color: #333;
+                margin-top: 100px;
+                padding: 0;
+            }
+
+            .blog-container {
+                max-width: 900px;
+                margin: 50px auto;
+                padding: 40px 50px;
+                background-color: #ffffff;
+                line-height: 1.9;
+                border-radius: 8px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            }
+
+            .blog-container h1 {
+                font-size: 30px;
+                margin-bottom: 24px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: center;
+                color: #1c1c1c;
+            }
+
+            .blog-container h2 {
+                font-size: 20px;
+                margin-top: 28px;
+                margin-bottom: 12px;
+                color: #222;
+            }
+
+            .blog-container p {
+                font-size: 16px;
+                margin-bottom: 16px;
+                color: #444;
+            }
+
+            .blog-container ul {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .blog-container ul li {
+                margin-bottom: 10px;
+            }
+
+            .highlight {
+                font-weight: 600;
+                color: #000;
+            }
+
+            .divider {
+                width: 60px;
+                height: 3px;
+                background-color: #000;
+                margin: 20px auto 30px;
+            }
+        </style>
     </head>
     <body onload="checkLogin(), showProduct(), showMenu(), showOrders()">
         <!--Header-->
@@ -100,40 +162,57 @@
         </div>
 
         <!--Content-->
-        <div id="content">
-            <div class="banner">
-                <img class="slideShow" src="../assets/banner/banner.png" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-flashsale.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-sam.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-ring.jpg" alt="banner">
-            </div>
+        <div class="blog-container">
+            <h1>Hướng dẫn tra cứu giá trang sức</h1>
+            <div class="divider"></div>
 
-            <div class="container" id="mainContainer">
-                <div id="product-list">
-                    <!--Product-->
-                </div>
+            <p>
+                Giá trang sức luôn có sự biến động theo thị trường vàng
+                và chất lượng đá quý tại từng thời điểm.
+                Tại <span class="highlight">LUXGEM Jewelry</span>,
+                chúng tôi cam kết công khai, minh bạch và cập nhật giá
+                để khách hàng an tâm khi lựa chọn sản phẩm.
+            </p>
 
-                <div id="productInfo" class="modal">
-                    <div id="info">
-                        <button type="button" class="close" onclick="closeProductInfo()">+</button>
-                        <div class="left">
-                            <img id="imgBig" src="">
-                            <div id="thumbList" class="thumb-list"></div>
-                        </div>
+            <h2>Cách tra cứu giá trang sức tại LUXGEM</h2>
+            <p>
+                Khách hàng có thể dễ dàng tra cứu giá trực tiếp
+                thông qua website chính thức của LUXGEM.
+                Mỗi sản phẩm đều được niêm yết giá rõ ràng,
+                bao gồm thông tin về chất liệu, trọng lượng và thiết kế.
+            </p>
 
-                        <div class="right">
-                            <p id="productName"></p>
-                            <p id="productPrice"></p>
-                            <p>Số lượng</p>
-                            <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
-                            <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
-                            <p id="productDescription"></p>
-                        </div>
-                    </div>
-                </div>
+            <p>
+                Trong trường hợp giá vàng thay đổi,
+                mức giá hiển thị sẽ được cập nhật theo thị trường
+                nhằm đảm bảo quyền lợi tốt nhất cho khách hàng.
+            </p>
 
-                <div id="page"></div>
-            </div>
+            <h2>Những yếu tố ảnh hưởng đến giá trang sức</h2>
+            <ul>
+                <li>Giá vàng và kim loại quý tại thời điểm mua</li>
+                <li>Loại đá quý, kích thước và độ tinh khiết</li>
+                <li>Thiết kế, độ tinh xảo và kỹ thuật chế tác</li>
+                <li>Chính sách ưu đãi hoặc chương trình khuyến mãi</li>
+            </ul>
+
+            <p>
+                Việc hiểu rõ các yếu tố này sẽ giúp bạn lựa chọn
+                sản phẩm phù hợp với nhu cầu và ngân sách của mình.
+            </p>
+
+            <h2>Hỗ trợ tư vấn nhanh chóng</h2>
+            <p>
+                Nếu cần hỗ trợ chi tiết hơn,
+                đội ngũ tư vấn viên của LUXGEM luôn sẵn sàng
+                giải đáp mọi thắc mắc về giá cả, chất lượng
+                cũng như các chính sách đi kèm.
+            </p>
+
+            <p>
+                LUXGEM cam kết mang đến trải nghiệm mua sắm minh bạch,
+                chuyên nghiệp và xứng tầm với giá trị của từng món trang sức.
+            </p>
         </div>
 
         <!--Footer-->

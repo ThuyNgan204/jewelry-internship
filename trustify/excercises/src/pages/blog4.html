@@ -5,6 +5,68 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LUXGEM JEWELRY STORE</title>
         <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
+        <style>
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background-color: #fafafa;
+                color: #333;
+                margin-top: 100px;
+                padding: 0;
+            }
+
+            .blog-container {
+                max-width: 900px;
+                margin: 50px auto;
+                padding: 40px 50px;
+                background-color: #ffffff;
+                line-height: 1.9;
+                border-radius: 8px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            }
+
+            .blog-container h1 {
+                font-size: 30px;
+                margin-bottom: 24px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: center;
+                color: #1c1c1c;
+            }
+
+            .blog-container h2 {
+                font-size: 20px;
+                margin-top: 28px;
+                margin-bottom: 12px;
+                color: #222;
+            }
+
+            .blog-container p {
+                font-size: 16px;
+                margin-bottom: 16px;
+                color: #444;
+            }
+
+            .blog-container ul {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .blog-container ul li {
+                margin-bottom: 10px;
+            }
+
+            .highlight {
+                font-weight: 600;
+                color: #000;
+            }
+
+            .divider {
+                width: 60px;
+                height: 3px;
+                background-color: #000;
+                margin: 20px auto 30px;
+            }
+        </style>
     </head>
     <body onload="checkLogin(), showProduct(), showMenu(), showOrders()">
         <!--Header-->
@@ -100,40 +162,49 @@
         </div>
 
         <!--Content-->
-        <div id="content">
-            <div class="banner">
-                <img class="slideShow" src="../assets/banner/banner.png" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-flashsale.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-sam.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-ring.jpg" alt="banner">
-            </div>
+        <div class="blog-container">
+            <h1>Câu hỏi thường gặp</h1>
+            <div class="divider"></div>
 
-            <div class="container" id="mainContainer">
-                <div id="product-list">
-                    <!--Product-->
-                </div>
+            <p>
+                Dưới đây là những câu hỏi phổ biến
+                mà khách hàng thường quan tâm
+                khi mua sắm tại <span class="highlight">LUXGEM Jewelry</span>.
+            </p>
 
-                <div id="productInfo" class="modal">
-                    <div id="info">
-                        <button type="button" class="close" onclick="closeProductInfo()">+</button>
-                        <div class="left">
-                            <img id="imgBig" src="">
-                            <div id="thumbList" class="thumb-list"></div>
-                        </div>
+            <h2>Trang sức LUXGEM có được kiểm định không?</h2>
+            <p>
+                Tất cả sản phẩm của LUXGEM đều được kiểm định
+                về chất lượng, hàm lượng kim loại quý
+                và đá quý theo tiêu chuẩn nghiêm ngặt.
+            </p>
 
-                        <div class="right">
-                            <p id="productName"></p>
-                            <p id="productPrice"></p>
-                            <p>Số lượng</p>
-                            <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
-                            <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
-                            <p id="productDescription"></p>
-                        </div>
-                    </div>
-                </div>
+            <h2>LUXGEM có chính sách bảo hành không?</h2>
+            <p>
+                LUXGEM áp dụng chính sách bảo hành rõ ràng
+                đối với từng dòng sản phẩm,
+                bao gồm làm sạch, đánh bóng và kiểm tra định kỳ.
+            </p>
 
-                <div id="page"></div>
-            </div>
+            <h2>Thời gian giao hàng mất bao lâu?</h2>
+            <p>
+                Thời gian giao hàng thông thường từ 2–5 ngày làm việc,
+                tùy theo khu vực nhận hàng và tình trạng sản phẩm.
+            </p>
+
+            <h2>Tôi có thể đổi hoặc trả sản phẩm không?</h2>
+            <p>
+                Khách hàng có thể đổi hoặc trả sản phẩm
+                theo chính sách của LUXGEM,
+                với điều kiện sản phẩm còn nguyên vẹn
+                và đầy đủ hóa đơn mua hàng.
+            </p>
+
+            <p>
+                Nếu bạn còn bất kỳ thắc mắc nào khác,
+                vui lòng liên hệ đội ngũ chăm sóc khách hàng
+                để được hỗ trợ nhanh chóng và tận tâm.
+            </p>
         </div>
 
         <!--Footer-->

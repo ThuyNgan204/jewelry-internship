@@ -5,6 +5,68 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LUXGEM JEWELRY STORE</title>
         <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
+        <style>
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background-color: #fafafa;
+                color: #333;
+                margin-top: 100px;
+                padding: 0;
+            }
+
+            .blog-container {
+                max-width: 900px;
+                margin: 50px auto;
+                padding: 40px 50px;
+                background-color: #ffffff;
+                line-height: 1.9;
+                border-radius: 8px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            }
+
+            .blog-container h1 {
+                font-size: 30px;
+                margin-bottom: 24px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: center;
+                color: #1c1c1c;
+            }
+
+            .blog-container h2 {
+                font-size: 20px;
+                margin-top: 28px;
+                margin-bottom: 12px;
+                color: #222;
+            }
+
+            .blog-container p {
+                font-size: 16px;
+                margin-bottom: 16px;
+                color: #444;
+            }
+
+            .blog-container ul {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .blog-container ul li {
+                margin-bottom: 10px;
+            }
+
+            .highlight {
+                font-weight: 600;
+                color: #000;
+            }
+
+            .divider {
+                width: 60px;
+                height: 3px;
+                background-color: #000;
+                margin: 20px auto 30px;
+            }
+        </style>
     </head>
     <body onload="checkLogin(), showProduct(), showMenu(), showOrders()">
         <!--Header-->
@@ -100,40 +162,53 @@
         </div>
 
         <!--Content-->
-        <div id="content">
-            <div class="banner">
-                <img class="slideShow" src="../assets/banner/banner.png" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-flashsale.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-sam.jpg" alt="banner">
-                <img class="slideShow" src="../assets/banner/banner-ring.jpg" alt="banner">
-            </div>
+        <div class="blog-container">
+            <h1>Hướng dẫn mua hàng và thanh toán</h1>
+            <div class="divider"></div>
 
-            <div class="container" id="mainContainer">
-                <div id="product-list">
-                    <!--Product-->
-                </div>
+            <p>
+                Tại <span class="highlight">LUXGEM Jewelry</span>,
+                chúng tôi mang đến quy trình mua sắm đơn giản,
+                thuận tiện nhưng vẫn đảm bảo trải nghiệm
+                sang trọng và an toàn cho khách hàng.
+            </p>
 
-                <div id="productInfo" class="modal">
-                    <div id="info">
-                        <button type="button" class="close" onclick="closeProductInfo()">+</button>
-                        <div class="left">
-                            <img id="imgBig" src="">
-                            <div id="thumbList" class="thumb-list"></div>
-                        </div>
+            <h2>Các bước mua hàng tại LUXGEM</h2>
+            <ul>
+                <li>Lựa chọn sản phẩm yêu thích trên website hoặc tại cửa hàng</li>
+                <li>Xem thông tin chi tiết về chất liệu, thiết kế và giá bán</li>
+                <li>Thêm sản phẩm vào giỏ hàng và kiểm tra lại đơn đặt hàng</li>
+                <li>Điền thông tin nhận hàng và xác nhận mua hàng</li>
+            </ul>
 
-                        <div class="right">
-                            <p id="productName"></p>
-                            <p id="productPrice"></p>
-                            <p>Số lượng</p>
-                            <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
-                            <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
-                            <p id="productDescription"></p>
-                        </div>
-                    </div>
-                </div>
+            <p>
+                Mỗi đơn hàng đều được đội ngũ LUXGEM kiểm tra cẩn thận
+                trước khi giao đến tay khách hàng,
+                đảm bảo đúng mẫu mã và chất lượng cam kết.
+            </p>
 
-                <div id="page"></div>
-            </div>
+            <h2>Phương thức thanh toán linh hoạt</h2>
+            <p>
+                LUXGEM hỗ trợ nhiều hình thức thanh toán
+                nhằm đáp ứng nhu cầu đa dạng của khách hàng.
+            </p>
+
+            <ul>
+                <li>Thanh toán tiền mặt khi nhận hàng</li>
+                <li>Chuyển khoản ngân hàng</li>
+                <li>Thanh toán qua thẻ Visa, MasterCard, JCB</li>
+                <li>Mua trang sức trả góp 0% lãi suất</li>
+            </ul>
+
+            <p>
+                Tất cả giao dịch đều được bảo mật
+                và tuân thủ các tiêu chuẩn an toàn thanh toán hiện hành.
+            </p>
+
+            <p>
+                Với LUXGEM, mỗi trải nghiệm mua sắm
+                không chỉ là giao dịch mà còn là sự an tâm và tin cậy lâu dài.
+            </p>
         </div>
 
         <!--Footer-->
