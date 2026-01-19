@@ -707,7 +707,10 @@ function sortPrice(value) {
 
     localStorage.setItem('product', JSON.stringify(productArray));
 
-    window.location.href = "index.html?all&0";
+    let params = document.location.search.replace('?', '').split('&');
+    let category = params[0] || 'all';
+
+    window.location.href = `index.html?${category}&0`;
 }
 
 /*CUSTOM ALERT*/
