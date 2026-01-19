@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý sản phẩm</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <script src="../javascript/products.js" defer></script>
-    <script src="../javascript/admin.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script src="../javascript/products.js"></script>
+    <script src="../javascript/admin.js"></script>
 </head>
 
 <body onload="showProducts();">
@@ -19,9 +19,9 @@
             <ul>
                 <li>
                     <img src="../assets/images/home.svg" alt="Home">
-                    <a href="index.html">Trang chủ</a>
+                    <a href="../pages/index.html">Trang chủ</a>
                 </li>
-                <li>
+                <li class="active">
                     <img src="../assets/images/products.svg" alt="Products">
                     <a href="products.html">Sản phẩm</a>
                 </li>
@@ -40,9 +40,27 @@
         <div id="wrap2">
             <div class="page-header">
                 <h2 class="page-title">Quản lý sản phẩm</h2>
-                <button class="btn-add" onclick="openModal()">
-                    Thêm sản phẩm mới
-                </button>
+
+                <div class="filter-bar">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Tìm kiếm sản phẩm..."
+                        oninput="applyFilters()"
+                    >
+
+                    <select id="categoryFilter" onchange="applyFilters()">
+                        <option value="all">Tất cả loại</option>
+                        <option value="ring">Nhẫn</option>
+                        <option value="necklace">Dây chuyền</option>
+                        <option value="bracelet">Lắc tay</option>
+                        <option value="watch">Đồng hồ</option>
+                    </select>
+
+                    <button class="btn-add" onclick="openModal()">
+                        Thêm sản phẩm mới
+                    </button>
+                </div>
             </div>
 
             <!-- product table -->
@@ -56,12 +74,13 @@
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             <th>Loại</th>
+                            <th>Mô tả</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody id="productTable">
                         <tr>
-                            <td colspan="6" class="no-data">Đang tải dữ liệu...</td>
+                            <td colspan="7" class="no-data">Đang tải dữ liệu...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -115,9 +134,19 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="description">Mô tả sản phẩm</label>
+                        <textarea id="description" placeholder="Nhập mô tả chi tiết về sản phẩm" rows="4"></textarea>
+                    </div>
+
                     <div class="form-group" id="imagePreviewContainer" style="display: none;">
-                        <label>Xem trước ảnh</label>
-                        <img id="imagePreview" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0; margin-top: 8px;">
+                        <label>Xem trước ảnh: </label>
+                        <div class="image-preview" style="position: relative; display: flex; gap: 12px ;">
+                            <img id="imagePreview" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0; margin-top: 8px;">
+                            <div class="image-close-btn">
+                                <span onclick="closeImagePreview()">X</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
