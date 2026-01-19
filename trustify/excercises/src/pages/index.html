@@ -108,6 +108,17 @@
                 <img class="slideShow" src="../assets/banner/banner-ring.jpg" alt="banner">
             </div>
 
+            <div class="sortPrices">
+                <p>Sắp xếp theo giá:</p>
+                <div class="choose">
+                    <select onchange="sortPrice(this.value)">
+                        <option value="">-- Chọn --</option>
+                        <option value="asc">Tăng dần</option>
+                        <option value="desc">Giảm dần</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="container" id="mainContainer">
                 <div id="product-list">
                     <!--Product-->

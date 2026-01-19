@@ -695,6 +695,21 @@ function showOrders() {
     });
 }
 
+/*SORTING*/
+function sortPrice(value) {
+    if (!value) return;
+
+    let productArray = JSON.parse(localStorage.getItem('product')) || [];
+
+    productArray.sort((a, b) =>
+        value === 'asc' ? a.price - b.price : b.price - a.price
+    );
+
+    localStorage.setItem('product', JSON.stringify(productArray));
+
+    window.location.href = "index.html?all&0";
+}
+
 /*CUSTOM ALERT*/
 function customAlert(message, type){
     if(type == 'success'){
