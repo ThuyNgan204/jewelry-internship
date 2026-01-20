@@ -63,8 +63,7 @@ function editUser(username) {
         document.getElementById('phone').value = user.phone || '';
         document.getElementById('address').value = user.address || '';
         document.getElementById('datesignup').value = user.datesignup || '';
-        document.getElementById('password').value = '';
-        document.getElementById('password').required = false;
+        document.getElementById('password').value = user.password || '';
         document.getElementById('passwordRequired').style.display = 'none';
 
         document.getElementById('modalTitle').textContent = 'Cập nhật người dùng';
