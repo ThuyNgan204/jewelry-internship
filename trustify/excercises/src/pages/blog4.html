@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LUXGEM JEWELRY STORE</title>
+        <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
+        <style>
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background-color: #fafafa;
+                color: #333;
+                margin-top: 100px;
+                padding: 0;
+            }
+
+            .blog-container {
+                max-width: 900px;
+                margin: 50px auto;
+                padding: 40px 50px;
+                background-color: #ffffff;
+                line-height: 1.9;
+                border-radius: 8px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            }
+
+            .blog-container h1 {
+                font-size: 30px;
+                margin-bottom: 24px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: center;
+                color: #1c1c1c;
+            }
+
+            .blog-container h2 {
+                font-size: 20px;
+                margin-top: 28px;
+                margin-bottom: 12px;
+                color: #222;
+            }
+
+            .blog-container p {
+                font-size: 16px;
+                margin-bottom: 16px;
+                color: #444;
+            }
+
+            .blog-container ul {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .blog-container ul li {
+                margin-bottom: 10px;
+            }
+
+            .highlight {
+                font-weight: 600;
+                color: #000;
+            }
+
+            .divider {
+                width: 60px;
+                height: 3px;
+                background-color: #000;
+                margin: 20px auto 30px;
+            }
+        </style>
+    </head>
+    <body onload="checkLogin(), showProduct(), showMenu(), showOrders()">
+        <!--Header-->
+        <header>
+            <a href="index.html" class="logo">
+                <img class="logo" src="../assets/icon/logo_minisize.png" alt="LUXGEM LOGO"/>
+            </a>
+
+            <nav class="navbar">
+                <ul id="navMenu"></ul>
+            </nav>
+
+            <ul class="icon">
+                <li><button onclick="showForm()"><img src="../assets/icon/user.svg" alt="user icon" /></button></li>
+                <li><a href="./cart.html"><img src="../assets/icon/cart.svg" alt="cart icon"/></a></li>
+                <li><button id="btnSearch"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>
+            </ul>
+
+            <div id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <!--User-->
+        <div id="user" class="modal">
+            <div id="login">
+                <form id="loginForm">
+                    <h2>ĐĂNG NHẬP</h2>
+                    <button type="button" class="close" onclick="closeForm()">+</button>
+                    <div class="loginInfo">
+                        <div class="col">
+                            <label for="usernameLogin">Tên đăng nhập:</label>
+                            <input type="text" id="usernameLogin"/>
+                            <div id="usernameError">Bạn chưa nhập tên đăng nhập.</div>
+                            <label for="passwordLogin">Mật khẩu:</label>
+                            <input type="password" id="passwordLogin"/>
+                            <div id="passwordError">Bạn chưa nhập mật khẩu.</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnLogin">Đăng nhập</button>
+                    <p>Bạn chưa có tài khoản? <a href="#" onclick="showSignup()">Đăng ký</a></p>
+                </form>
+            </div>
+
+            <div id="signup">
+                <form id="signupForm">
+                    <h2>ĐĂNG KÝ</h2>
+                    <button type="button" class="close" onclick="closeForm()">+</button>
+                    <div class="signupInfo">
+                        <div class="col">
+                            <label for="fullname">Họ và tên:</label>
+                            <input type="text" id="fullname">
+                            <div id="fullnameError">Bạn chưa nhập họ tên.</div>
+                            <label for="address">Địa chỉ:</label>
+                            <input type="text" id="address">
+                            <div id="addressError">Bạn chưa nhập địa chỉ.</div>
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="text" id="phone">
+                            <div id="phoneError">Bạn chưa nhập số điện thoại.</div>
+                        </div>
+                        <div class="col">
+                            <label for="usernameSignup">Tên đăng nhập:</label>
+                            <input type="text" id="usernameSignup">
+                            <div id="usernameSignupError">Bạn chưa nhập tên đăng nhập.</div>
+                            <label for="passwordSignup">Mật khẩu:</label>
+                            <input type="password" id="passwordSignup">
+                            <div id="passwordSignupError">Bạn chưa nhập mật khẩu.</div>
+                            <label for="passwordSignup2">Nhập lại mật khẩu:</label>
+                            <input type="password" id="passwordSignup2">
+                            <div id="passwordSignup2Error">Mật khẩu không trùng khớp</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnSignup">Đăng ký</button>
+                        <p>Bạn đã có tài khoản? <a href="#" onclick="showLogin()">Đăng nhập</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!--Search-->
+        <div id="search" class="modal">
+            <div id="searchArea">
+                <div id="searchBar">
+                    <img src="../assets/icon/search.svg" alt="search icon"/>
+                    <input type="search" id="searchProduct" name="searchProduct" placeholder="Tìm kiếm nhanh">
+                </div>
+
+                <div id="result">
+
+                </div>
+            </div>
+        </div>
+
+        <!--Content-->
+        <div class="blog-container">
+            <h1>Câu hỏi thường gặp</h1>
+            <div class="divider"></div>
+
+            <p>
+                Dưới đây là những câu hỏi phổ biến
+                mà khách hàng thường quan tâm
+                khi mua sắm tại <span class="highlight">LUXGEM Jewelry</span>.
+            </p>
+
+            <h2>Trang sức LUXGEM có được kiểm định không?</h2>
+            <p>
+                Tất cả sản phẩm của LUXGEM đều được kiểm định
+                về chất lượng, hàm lượng kim loại quý
+                và đá quý theo tiêu chuẩn nghiêm ngặt.
+            </p>
+
+            <h2>LUXGEM có chính sách bảo hành không?</h2>
+            <p>
+                LUXGEM áp dụng chính sách bảo hành rõ ràng
+                đối với từng dòng sản phẩm,
+                bao gồm làm sạch, đánh bóng và kiểm tra định kỳ.
+            </p>
+
+            <h2>Thời gian giao hàng mất bao lâu?</h2>
+            <p>
+                Thời gian giao hàng thông thường từ 2–5 ngày làm việc,
+                tùy theo khu vực nhận hàng và tình trạng sản phẩm.
+            </p>
+
+            <h2>Tôi có thể đổi hoặc trả sản phẩm không?</h2>
+            <p>
+                Khách hàng có thể đổi hoặc trả sản phẩm
+                theo chính sách của LUXGEM,
+                với điều kiện sản phẩm còn nguyên vẹn
+                và đầy đủ hóa đơn mua hàng.
+            </p>
+
+            <p>
+                Nếu bạn còn bất kỳ thắc mắc nào khác,
+                vui lòng liên hệ đội ngũ chăm sóc khách hàng
+                để được hỗ trợ nhanh chóng và tận tâm.
+            </p>
+        </div>
+
+        <!--Footer-->
+        <footer>
+            <div class="footerLeft">
+                <a href="index.html" class="logo">
+                    <img class="logo" src="../assets/icon/logo_minisize.png" alt="LUXGEM LOGO"/>
+                </a>
+                <p class="companyName">CÔNG TY CỔ PHẦN VÀNG BẠC ĐÁ QUÝ LUXGEM</p>
+                <p class="companyLocation">40 Lam Sơn, Tân Bình, Thành phố Hồ Chí Minh</p>
+                <p class="hotline">ĐT: 028 3995 1703</p>
+                <p class="hotline">Fax: 028 3995 1702</p>
+                <p class="copyright">Copyright 2025 © PNJ .All Rights Reserved.</p>
+            </div>
+
+            <div class="footerCenter">
+                <p class="customerService">DỊCH VỤ KHÁCH HÀNG</p>
+                <div class="blog">
+                    <a href="./blog1.html">Mua hàng trả góp</a>
+                    <a href="./blog2.html">Hướng dẫn tra cứu giá</a>
+                    <a href="./blog3.html">Hướng dẫn mua hàng và thanh toán</a>
+                    <a href="./blog4.html">Câu hỏi thường gặp</a>
+                </div>
+            </div>
+
+            <div class="footerRight">
+                <p class="companySocial">KẾT NỐI VỚI CHÚNG TÔI</p>
+                <div class="socialIcon">
+                    <a href="https://www.facebook.com/" class="facebookIcon">
+                        <img src="../assets/icon/facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/" class="instagramIcon">
+                        <img src="../assets/icon/instagram.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.youtube.com/" class="youtubeIcon">
+                        <img src="../assets/icon/youtube.svg" alt="Facebook">
+                    </a>
+                    <a href="https://mail.google.com/" class="emailIcon">
+                        <img src="../assets/icon/email.svg" alt="Facebook">
+                    </a>
+                </div>
+
+                <p class="paymentMethod">PHƯƠNG THỨC THANH TOÁN</p>
+                <div class="paymentIcon">
+                    <img src="../assets/icon/visa.svg" alt="Visa">
+                    <img src="../assets/icon/mastercard.svg" alt="MasterCard">
+                    <img src="../assets/icon/jcb.svg" alt="JCB">
+                    <img src="../assets/icon/thanhtoantienmat.svg" alt="Tiền mặt">
+                    <img src="../assets/icon/internetBanking.svg" alt="Internet Banking">
+                    <img src="../assets/icon/tragop.svg" alt="Trả góp">
+                </div>
+            </div>
+
+        
+        </footer>
+
+        <div id="customAlert"></div>
+        <script src="../javascript/customer.js"></script>
+    </body>
+</html>

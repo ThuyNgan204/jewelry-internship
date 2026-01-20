@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LUXGEM JEWELRY STORE</title>
+        <link rel="stylesheet" href="../styles/customer-side/homepage.css"/>
+    </head>
+    <body onload="checkLogin(), showProduct(), showMenu(), showCart(), showOrders()">
+        <!--Header-->
+        <header>
+            <a href="index.html" class="logo">
+                <img class="logo" src="../assets/icon/logo_minisize.png" alt="LUXGEM LOGO"/>
+            </a>
+
+            <nav class="navbar">
+                <ul id="navMenu"></ul>
+            </nav>
+
+            <ul class="icon">
+                <li><button onclick="showForm()"><img src="../assets/icon/user.svg" alt="user icon" /></button></li>
+                <li><a href="./cart.html"><img src="../assets/icon/cart.svg" alt="cart icon"/></a></li>
+                <li><button id="btnSearch" onclick="showSearch()"><img src="../assets/icon/search.svg" alt="search icon"/></button></li>
+            </ul>
+
+            <div id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <!--User-->
+        <div id="user" class="modal">
+            <div id="login">
+                <form id="loginForm">
+                    <h2>ĐĂNG NHẬP</h2>
+                    <button type="button" class="close" onclick="closeForm()">+</button>
+                    <div class="loginInfo">
+                        <div class="col">
+                            <label for="usernameLogin">Tên đăng nhập:</label>
+                            <input type="text" id="usernameLogin"/>
+                            <div id="usernameError">Bạn chưa nhập tên đăng nhập.</div>
+                            <label for="passwordLogin">Mật khẩu:</label>
+                            <input type="password" id="passwordLogin"/>
+                            <div id="passwordError">Bạn chưa nhập mật khẩu.</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnLogin">Đăng nhập</button>
+                    <p>Bạn chưa có tài khoản? <a href="#" onclick="showSignup()">Đăng ký</a></p>
+                </form>
+            </div>
+
+            <div id="signup">
+                <form id="signupForm">
+                    <h2>ĐĂNG KÝ</h2>
+                    <button type="button" class="close" onclick="closeForm()">+</button>
+                    <div class="signupInfo">
+                        <div class="col">
+                            <label for="fullname">Họ và tên:</label>
+                            <input type="text" id="fullname">
+                            <div id="fullnameError">Bạn chưa nhập họ tên.</div>
+                            <label for="address">Địa chỉ:</label>
+                            <input type="text" id="address">
+                            <div id="addressError">Bạn chưa nhập địa chỉ.</div>
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="text" id="phone">
+                            <div id="phoneError">Bạn chưa nhập số điện thoại.</div>
+                        </div>
+                        <div class="col">
+                            <label for="usernameSignup">Tên đăng nhập:</label>
+                            <input type="text" id="usernameSignup">
+                            <div id="usernameSignupError">Bạn chưa nhập tên đăng nhập.</div>
+                            <label for="passwordSignup">Mật khẩu:</label>
+                            <input type="password" id="passwordSignup">
+                            <div id="passwordSignupError">Bạn chưa nhập mật khẩu.</div>
+                            <label for="passwordSignup2">Nhập lại mật khẩu:</label>
+                            <input type="password" id="passwordSignup2">
+                            <div id="passwordSignup2Error">Mật khẩu không trùng khớp</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnSignup">Đăng ký</button>
+                        <p>Bạn đã có tài khoản? <a href="#" onclick="showLogin()">Đăng nhập</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!--Search-->
+        <div id="search" class="modal">
+            <div id="searchArea">
+                <div id="searchBar">
+                    <img src="../assets/icon/search.svg" alt="search icon"/>
+                    <input type="search" id="searchProduct" name="searchProduct" placeholder="Tìm kiếm nhanh">
+                </div>
+
+                <div id="result">
+
+                </div>
+            </div>
+        </div>
+
+        <!--Content-->
+        <div id="cart">
+            <div id="orderSection" style="display: none;">
+                <div class="heading">
+                    <p>Đơn hàng đã đặt</p>
+                </div>
+                <div id="orderArea"></div>
+            </div>
+
+            <div class="heading">
+                <p>Giỏ hàng</p>
+            </div>
+            <div id="mainCart"></div>
+
+        </div>
+
+        <div id="productInfo" class="modal">
+            <div id="info">
+                <button type="button" class="close" onclick="closeProductInfo()">+</button>
+                <div class="left">
+                    <img id="imgBig" src="">
+                    <div id="thumbList" class="thumb-list"></div>
+                </div>
+
+                <div class="right">
+                    <p id="productName"></p>
+                    <p id="productPrice"></p>
+                    <p>Số lượng</p>
+                    <button class="quantityDown" onclick="quantityDown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityUp()">+</button>
+                    <button class="addToCart" onclick="addToCart()">Thêm vào giỏ hàng</button>
+                    <p id="productDescription"></p>
+                </div>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <footer>
+            <div class="footerLeft">
+                <a href="index.html" class="logo">
+                    <img class="logo" src="../assets/icon/logo_minisize.png" alt="LUXGEM LOGO"/>
+                </a>
+                <p class="companyName">CÔNG TY CỔ PHẦN VÀNG BẠC ĐÁ QUÝ LUXGEM</p>
+                <p class="companyLocation">40 Lam Sơn, Tân Bình, Thành phố Hồ Chí Minh</p>
+                <p class="hotline">ĐT: 028 3995 1703</p>
+                <p class="hotline">Fax: 028 3995 1702</p>
+                <p class="copyright">Copyright 2025 © PNJ .All Rights Reserved.</p>
+            </div>
+
+            <div class="footerCenter">
+                <p class="customerService">DỊCH VỤ KHÁCH HÀNG</p>
+                <div class="blog">
+                    <a href="./blog1.html">Mua hàng trả góp</a>
+                    <a href="./blog2.html">Hướng dẫn tra cứu giá</a>
+                    <a href="./blog3.html">Hướng dẫn mua hàng và thanh toán</a>
+                    <a href="./blog4.html">Câu hỏi thường gặp</a>
+                </div>
+            </div>
+
+            <div class="footerRight">
+                <p class="companySocial">KẾT NỐI VỚI CHÚNG TÔI</p>
+                <div class="socialIcon">
+                    <a href="https://www.facebook.com/" class="facebookIcon">
+                        <img src="../assets/icon/facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/" class="instagramIcon">
+                        <img src="../assets/icon/instagram.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.youtube.com/" class="youtubeIcon">
+                        <img src="../assets/icon/youtube.svg" alt="Facebook">
+                    </a>
+                    <a href="https://mail.google.com/" class="emailIcon">
+                        <img src="../assets/icon/email.svg" alt="Facebook">
+                    </a>
+                </div>
+
+                <p class="paymentMethod">PHƯƠNG THỨC THANH TOÁN</p>
+                <div class="paymentIcon">
+                    <img src="../assets/icon/visa.svg" alt="Visa">
+                    <img src="../assets/icon/mastercard.svg" alt="MasterCard">
+                    <img src="../assets/icon/jcb.svg" alt="JCB">
+                    <img src="../assets/icon/thanhtoantienmat.svg" alt="Tiền mặt">
+                    <img src="../assets/icon/internetBanking.svg" alt="Internet Banking">
+                    <img src="../assets/icon/tragop.svg" alt="Trả góp">
+                </div>
+            </div>
+
+        
+        </footer>
+
+        <div id="customAlert"></div>
+        <script src="../javascript/customer.js"></script>
+    </body>
+</html>
